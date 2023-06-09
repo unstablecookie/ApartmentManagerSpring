@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>user </title>
+		<link th:href="@{/static/styles/bootstrap.min.css}" rel="stylesheet" type="text/css" ></link>
+		<link th:href="@{/static/styles/navbar-top.css}" rel="stylesheet" type="text/css" ></link>
+		<link th:href="@{/static/styles/style.css}" rel="stylesheet" type="text/css" ></link>
+		
+	</head>
+	<body>
+		<div th:insert="~{header :: topmenu}"></div>
+		<div>
+			<h2>User:</h2>
+		    <p>user id is: <span th:text="${userid.id}"></span></p>
+		    <p>first name is: <span th:text="${userid.firstName}"></span></p>
+		    <p>last name is: <span th:text="${userid.lastName}"></span></p>
+		    <p>user name is: <span th:text="${userid.userName}"></span></p>
+		</div>
+		<div th:insert="~{footer :: copyright}"></div>
+		<script th:src="@{/static/scripts/bootstrap.min.js}"></script>
+		<script th:src="@{/static/scripts/jquery.min.js}"></script>
+		<script th:src="@{/static/scripts/jquery-3.2.1.slim.min.js}"></script>
+		<script th:src="@{/static/scripts/popper.min.js}"></script>
+	</body>
+</html>
