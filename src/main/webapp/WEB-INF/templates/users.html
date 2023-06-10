@@ -19,12 +19,14 @@
 					<tr>
 						<th scope="col">ID</th>
 						<th scope="col">username</th>
+						<th scope="col">details</th>
 					</tr>
 				</thead>
 				<thead>
 					<tr th:each="asp : ${userslist}">
 						<td><span th:text="${asp.id}">id</span></td>
 						<td><span th:text="${asp.userName}">username</span></td>
+						<td><a th:href="@{/users/{userid}(userid=${asp.id})}">user details</a></td>
 					</tr>
 				</thead>
 			</table>
