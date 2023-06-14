@@ -55,11 +55,4 @@ public class UsersController {
 		
 	}
 	
-	@RequestMapping(value="/users/search",method=GET)
-	public String searchUser(Model model,@Param("keyword") String keyword) {
-		List<User> list = userService.listAll(keyword);
-		model.addAttribute("listusers", list);
-		model.addAttribute("keyword", keyword);
-		return "usersearch";
-	}
 }

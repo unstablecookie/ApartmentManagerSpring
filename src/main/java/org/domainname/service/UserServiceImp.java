@@ -11,8 +11,6 @@ import org.domainname.entity.User;
 import org.domainname.service.UserService;
 import org.domainname.service.UserServiceImp;
 
-
-
 @Service
 public class UserServiceImp implements UserService{
 	
@@ -24,7 +22,6 @@ public class UserServiceImp implements UserService{
 		this.userRepository = userRepository;
 	}
 
-	
 	@Transactional
 	public List<User> fetchUsers(){
 		return (List<User>)userRepository.findAll();

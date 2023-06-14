@@ -44,16 +44,12 @@
 					                th:value="${value.getId()}"
 					                th:text="${value.getId()}">
 					        </option>
-							<!-- <option th:each="value : ${userslist}"
-					                th:value="${value}"
-					                th:text="${value}">
-					        </option>  -->
 					</select>
 				</div>
 				<div>
-					<input type="file" name="image1" accept="image/*" class="form-control-file" ><!-- th:data-token="${_csrf.token}" -->
+					<input type="file" name="image1" accept="image/*" class="form-control-file" >
 				</div>
-				<input type="submit" class="btn btn-primary" value="Register" />
+				<input type="submit" class="btn btn-success" value="Register" />
 				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 			</form>
 		</div>

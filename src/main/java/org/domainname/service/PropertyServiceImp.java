@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import org.domainname.entity.Property;
+import org.domainname.entity.User;
 import org.domainname.service.PropertyService;
 import org.domainname.service.PropertyServiceImp;
 
@@ -35,5 +36,12 @@ public class PropertyServiceImp implements PropertyService{
 	public Property saveProperty(Property property) {
 		return (Property)propertyRepository.save(property);
 	}
-
+	
+	@Transactional
+	public List<Property> listAll(String keyword){
+		if(keyword != null) {
+			return (List<Property>)propertyRepository.search(keyword);
+		}
+		return  (List<Property>)propertyRepository.findAll();
+	}
 }

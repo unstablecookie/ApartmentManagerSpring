@@ -10,5 +10,5 @@ public interface PropertyService {
 	List<Property> fetchProperty();
 	Property getById(Long id);
 	Property saveProperty(Property property);
-	
+	List<Property> listAll(String keyword);
 }
