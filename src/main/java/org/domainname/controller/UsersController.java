@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.domainname.service.UserServiceImp;
 import org.slf4j.Logger;
@@ -15,6 +14,8 @@ import org.domainname.entity.User;
 import java.util.List;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import org.springframework.data.repository.query.Param;
 
 @Controller
 public class UsersController {
@@ -52,5 +53,13 @@ public class UsersController {
 		logger.info("/users/register with method POST requested");
 		return "redirect:/users/";
 		
+	}
+	
+	@RequestMapping(value="/users/search",method=GET)
+	public String searchUser(Model model,@Param("keyword") String keyword) {
+		List<User> list = userService.listAll(keyword);
+		model.addAttribute("listusers", list);
+		model.addAttribute("keyword", keyword);
+		return "usersearch";
 	}
 }
