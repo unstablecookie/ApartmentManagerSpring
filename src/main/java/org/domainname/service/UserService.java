@@ -9,6 +9,7 @@ public interface UserService {
 	List<User> fetchUsers();
 	User getById(Long id);
 	User saveUser(User user);
+	List<User> listAll(String keyword);
 	
 
 }

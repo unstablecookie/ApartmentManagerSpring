@@ -2,7 +2,7 @@ package org.domainname.service;
 
 import org.domainname.repository.UserRepository;
 import java.util.List;
-
+import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.domainname.entity.User;
 import org.domainname.service.UserService;
 import org.domainname.service.UserServiceImp;
+
+
 
 @Service
 public class UserServiceImp implements UserService{
@@ -21,6 +23,7 @@ public class UserServiceImp implements UserService{
 	public void setUserRepository(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
+
 	
 	@Transactional
 	public List<User> fetchUsers(){
@@ -36,4 +39,13 @@ public class UserServiceImp implements UserService{
 	public User saveUser(User user) {
 		return (User)userRepository.save(user);
 	}
+	
+	@Transactional
+	public List<User> listAll(String keyword){
+		if(keyword != null) {
+			return (List<User>)userRepository.search(keyword);
+		}
+		return  (List<User>)userRepository.findAll();
+	}
+
 }

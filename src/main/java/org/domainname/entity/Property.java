@@ -62,23 +62,6 @@ public class Property {
 		this.user = usr;
 		this.photo = new byte[] {};
 
-		
-		/* legacy
-		if(photoArr.length>0) {
-			this.photo = photoArr;
-		}else {
-			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			try (InputStream in = getClass().getResourceAsStream("/DefaultHouse.png")){
-				int length;
-				byte[] buffer = new byte[1024];
-				while((length = in.read(buffer)) != -1) out.write(buffer,0,length);
-			}catch(IOException e) {
-				
-			}
-			this.photo = out.toByteArray();
-		}*/
-		
-
 	}
 	
 	public long getId() {
@@ -123,5 +106,13 @@ public class Property {
 	
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public String toString() {
+		return "Property{"+ 
+				"id="+this.id+
+				", type="+this.type+
+				", area="+this.area + 
+				", build="+this.build ;
 	}
 }

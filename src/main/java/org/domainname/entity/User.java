@@ -73,4 +73,12 @@ public class User {
 		User user = (User)obj;
 		return (this.id == user.getId());
 	}
+	
+	public String toString() {
+		return "User{"+ 
+				"id="+this.id+
+				", username="+this.userName+
+				", first name="+this.firstName + 
+				", last name="+this.lastName ;
+	}
 }
