@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long>{
 	
-	@Query("SELECT p FROM User p WHERE p.userName LIKE %?1%")
+	@Query("SELECT u FROM User u WHERE CONCAT(u.userName, ' ', u.firstName, ' ', u.lastName, ' ', u.userName)  LIKE %?1% ")
 	public List<User> search(String keyword);
 }

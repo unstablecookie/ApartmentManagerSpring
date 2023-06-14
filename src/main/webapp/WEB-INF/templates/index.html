@@ -10,11 +10,6 @@
 	<body>
 		<div th:insert="~{header :: topmenu}"></div>
 		<div>
-			<h2>home, sweet home</h2>
-			<form th:action="@{/users/search}">
-				<input type="text" name="keyword" id="keyword" th:value="${keyword}" />
-				<input type="submit" value="Search" />
-			</form>
 		</div>
 		<div th:insert="~{footer :: copyright}"></div>
 		<script th:src="@{/static/scripts/bootstrap.min.js}"></script>
