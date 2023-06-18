@@ -12,6 +12,7 @@ public interface UserService {
 	User saveUser(User user);
 	List<User> listAll(String keyword);
 	List<User> fetchUsersSortedUsername();
-	
+	List<User> fetchUsersSortedFirstname();
+	List<User> fetchUsersSortedLastname();
 
 }

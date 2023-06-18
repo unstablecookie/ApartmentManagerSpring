@@ -11,4 +11,7 @@ public interface PropertyService {
 	Property getById(Long id);
 	Property saveProperty(Property property);
 	List<Property> listAll(String keyword);
+	List<Property> fetchPropertyByType();
+	List<Property> fetchPropertyByArea();
+	List<Property> fetchPropertyByBuild();
 }

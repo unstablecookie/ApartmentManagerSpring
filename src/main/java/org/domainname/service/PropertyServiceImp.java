@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
 import org.domainname.entity.Property;
@@ -16,6 +17,15 @@ import org.domainname.service.PropertyServiceImp;
 public class PropertyServiceImp implements PropertyService{
 	
 	private PropertyRepository propertyRepository;
+	private Sort sortByType(){
+		return new Sort(Sort.Direction.ASC, "type");
+	}
+	private Sort sortByArea(){
+		return new Sort(Sort.Direction.ASC, "area");
+	}
+	private Sort sortByBuild(){
+		return new Sort(Sort.Direction.ASC, "build");
+	}
 	
 	@Autowired
 	public void setUserRepository(PropertyRepository propertyRepository) {
@@ -43,5 +53,20 @@ public class PropertyServiceImp implements PropertyService{
 			return (List<Property>)propertyRepository.search(keyword);
 		}
 		return  (List<Property>)propertyRepository.findAll();
+	}
+	
+	@Transactional
+	public List<Property> fetchPropertyByType(){
+		return (List<Property>)propertyRepository.findAll(sortByType());
+	}
+	
+	@Transactional
+	public List<Property> fetchPropertyByArea(){
+		return (List<Property>)propertyRepository.findAll(sortByArea());
+	}
+	
+	@Transactional
+	public List<Property> fetchPropertyByBuild(){
+		return (List<Property>)propertyRepository.findAll(sortByBuild());
 	}
 }

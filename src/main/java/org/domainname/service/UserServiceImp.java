@@ -20,7 +20,13 @@ public class UserServiceImp implements UserService{
 	private UserRepository userRepository;
 	private Sort sortByName(){
 		return new Sort(Sort.Direction.ASC, "userName");
-		}
+	}
+	private Sort sortByFirstName(){
+		return new Sort(Sort.Direction.ASC, "firstName");
+	}
+	private Sort sortByLastName(){
+		return new Sort(Sort.Direction.ASC, "lastName");
+	}
 	
 	@Autowired
 	public void setUserRepository(UserRepository userRepository) {
@@ -52,7 +58,16 @@ public class UserServiceImp implements UserService{
 	
 	@Transactional
 	public List<User> fetchUsersSortedUsername(){
-		
 		return (List<User>)userRepository.findAll(sortByName());
+	}
+	
+	@Transactional
+	public List<User> fetchUsersSortedFirstname(){
+		return (List<User>)userRepository.findAll(sortByFirstName());
+	}
+	
+	@Transactional
+	public List<User> fetchUsersSortedLastname(){
+		return (List<User>)userRepository.findAll(sortByLastName());
 	}
 }

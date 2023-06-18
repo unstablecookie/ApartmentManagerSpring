@@ -38,8 +38,47 @@ public class PropertyController {
 	@Autowired UserService userService;
 	
 	@RequestMapping(value="/property",method=GET)
-	public String home(Model model){
+	public String property(Model model){
 		List<Property> list = propertyService.fetchProperty();
+		Map<Long, String> map = new HashMap<>();
+		for(Property p:list) {
+			map.put(p.getId(), Base64.getEncoder().encodeToString(p.getPhoto()));
+		}
+		model.addAttribute("propertylist",list);
+		model.addAttribute("images",map);
+		logger.info("/property with GET method requested");
+		return "property";
+	}
+	
+	@RequestMapping(value="/propertybytype",method=GET)
+	public String propertyByType(Model model){
+		List<Property> list = propertyService.fetchPropertyByType();
+		Map<Long, String> map = new HashMap<>();
+		for(Property p:list) {
+			map.put(p.getId(), Base64.getEncoder().encodeToString(p.getPhoto()));
+		}
+		model.addAttribute("propertylist",list);
+		model.addAttribute("images",map);
+		logger.info("/property with GET method requested");
+		return "property";
+	}
+	
+	@RequestMapping(value="/propertybyarea",method=GET)
+	public String propertyByArea(Model model){
+		List<Property> list = propertyService.fetchPropertyByArea();
+		Map<Long, String> map = new HashMap<>();
+		for(Property p:list) {
+			map.put(p.getId(), Base64.getEncoder().encodeToString(p.getPhoto()));
+		}
+		model.addAttribute("propertylist",list);
+		model.addAttribute("images",map);
+		logger.info("/property with GET method requested");
+		return "property";
+	}
+	
+	@RequestMapping(value="/propertybybuild",method=GET)
+	public String propertyByBuild(Model model){
+		List<Property> list = propertyService.fetchPropertyByBuild();
 		Map<Long, String> map = new HashMap<>();
 		for(Property p:list) {
 			map.put(p.getId(), Base64.getEncoder().encodeToString(p.getPhoto()));

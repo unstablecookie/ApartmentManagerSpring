@@ -18,14 +18,18 @@
 				<thread>
 					<tr>
 						<th scope="col">ID</th>
-						<th scope="col">type</th>
+						<th scope="col" ><a th:href="@{/propertybytype}" th:text="type"></a></th>
+						<th scope="col" ><a th:href="@{/propertybyarea}" th:text="area"></a></th>
+						<th scope="col" ><a th:href="@{/propertybybuild}" th:text="build"></a></th>
 						<th scope="col">image</th>
 					</tr>
 				</thread>
 				<thread>
 					<tr th:each="asp : ${propertylist}">
 						<td><a th:text="${asp.id}" th:href="@{/property/{propertyid}(propertyid=${asp.id})}">propertyid</a></td>
-						<td><span th:text="${asp.type}">id</span></td>
+						<td><span th:text="${asp.type}">type</span></td>
+						<td><span th:text="${asp.area}">area</span></td>
+						<td><span th:text="${asp.build}">build</span></td>
 						<td><img th:src="${'data:image/jpeg;charset=utf-8;base64,' + images.get(asp.id)}" th:width="150" th:hight="150" alt=""></td>
 					</tr>
 				</thread>

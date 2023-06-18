@@ -19,16 +19,19 @@
 					<tr>
 						<th scope="col">ID</th>
 						<th scope="col" ><a th:href="@{/userssortusername}" th:text="username"></a></th>
+						<th scope="col" ><a th:href="@{/userssortfirstname}" th:text="'first name'"></a></th>
+						<th scope="col" ><a th:href="@{/userssortlastname}" th:text="'last name'"></a></th>
 					</tr>
 				</thead>
 				<thead>
 					<tr th:each="asp : ${userslist}">
 						<td><a th:text="${asp.id}" th:href="@{/users/{userid}(userid=${asp.id})}">userid</a></td>
 						<td><span th:text="${asp.userName}">username</span></td>
+						<td><span th:text="${asp.firstName}">first name</span></td>
+						<td><span th:text="${asp.lastName}">last name</span></td>
 					</tr>
 				</thead>
 			</table>
-			 <a th:href="@{/userssortusername}" th:text="sort"></a>
 		</div>
 		<div th:insert="~{footer :: copyright}"></div>
 		<script th:src="@{/static/scripts/bootstrap.min.js}"></script>

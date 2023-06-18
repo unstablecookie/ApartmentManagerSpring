@@ -40,6 +40,22 @@ public class UsersController {
 		return "users";
 	}
 	
+	@RequestMapping(value="/userssortfirstname",method=GET)
+	public String usersSortedFirstname(Model model) {
+		List<User> list = userService.fetchUsersSortedFirstname();
+		model.addAttribute("userslist",list);
+		logger.info("/userssortusername with method GET requested");
+		return "users";
+	}
+	
+	@RequestMapping(value="/userssortlastname",method=GET)
+	public String usersSortedLastname(Model model) {
+		List<User> list = userService.fetchUsersSortedLastname();
+		model.addAttribute("userslist",list);
+		logger.info("/userssortusername with method GET requested");
+		return "users";
+	}
+	
 	@RequestMapping(value="/users/{userid}",method=GET)
 	public String usersId(@PathVariable String userid, Model model) {
 		User user = userService.getById(Long.valueOf(userid));
