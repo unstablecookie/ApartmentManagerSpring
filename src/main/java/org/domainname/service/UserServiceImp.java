@@ -5,17 +5,22 @@ import java.util.List;
 import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
 import org.domainname.entity.User;
 import org.domainname.service.UserService;
 import org.domainname.service.UserServiceImp;
+import org.springframework.data.domain.Sort;
 
 @Service
 public class UserServiceImp implements UserService{
 	
 
 	private UserRepository userRepository;
+	private Sort sortByName(){
+		return new Sort(Sort.Direction.ASC, "userName");
+		}
 	
 	@Autowired
 	public void setUserRepository(UserRepository userRepository) {
@@ -44,5 +49,10 @@ public class UserServiceImp implements UserService{
 		}
 		return  (List<User>)userRepository.findAll();
 	}
-
+	
+	@Transactional
+	public List<User> fetchUsersSortedUsername(){
+		
+		return (List<User>)userRepository.findAll(sortByName());
+	}
 }

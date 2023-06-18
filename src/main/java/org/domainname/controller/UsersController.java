@@ -32,6 +32,14 @@ public class UsersController {
 		return "users";
 	}
 	
+	@RequestMapping(value="/userssortusername",method=GET)
+	public String usersSortedUsername(Model model) {
+		List<User> list = userService.fetchUsersSortedUsername();
+		model.addAttribute("userslist",list);
+		logger.info("/userssortusername with method GET requested");
+		return "users";
+	}
+	
 	@RequestMapping(value="/users/{userid}",method=GET)
 	public String usersId(@PathVariable String userid, Model model) {
 		User user = userService.getById(Long.valueOf(userid));

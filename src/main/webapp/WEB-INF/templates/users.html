@@ -18,8 +18,7 @@
 				<thead>
 					<tr>
 						<th scope="col">ID</th>
-						<th scope="col">username</th>
-
+						<th scope="col" ><a th:href="@{/userssortusername}" th:text="username"></a></th>
 					</tr>
 				</thead>
 				<thead>
@@ -29,6 +28,7 @@
 					</tr>
 				</thead>
 			</table>
+			 <a th:href="@{/userssortusername}" th:text="sort"></a>
 		</div>
 		<div th:insert="~{footer :: copyright}"></div>
 		<script th:src="@{/static/scripts/bootstrap.min.js}"></script>
