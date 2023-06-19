@@ -82,15 +82,19 @@ public class UsersController {
 		
 	}
 	
-	
 	@RequestMapping(value="/users",method=GET)
 	public String users(
-			@RequestParam(value = "pageid", required = false) String pageid,
+			@RequestParam(value = "pageid", required = false) int pageid,
 			Model model) {
-		List<User> list = userService.listAllPaged(new PageRequest(0, 5));
+		int pageSize = 5;
+		List<User> list = userService.listAllPaged(new PageRequest(pageid-1,pageSize));
+		int nextPage ;
+		if(list.size()<pageSize) nextPage = pageid;
+		else nextPage=pageid+1;
 		model.addAttribute("userslist",list);
-		//model.addAttribute("pageid",1);
+		model.addAttribute("pageid",nextPage);
 		logger.info("/users/{pageid} with method GET requested");
+
 		return "users";
 	}
 	

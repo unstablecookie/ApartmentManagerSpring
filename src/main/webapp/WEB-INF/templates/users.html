@@ -32,7 +32,7 @@
 					</tr>
 				</thead>
 			</table>
-				<!--  <a th:text="Paged" th:href="@{/users/{pageid}(pageid=${pageid})">List Users Paged</a>-->
+			<a th:text="${pageid}" th:href="@{/users(pageid=${pageid})}"></a>
 		</div>
 		<div th:insert="~{footer :: copyright}"></div>
 		<script th:src="@{/static/scripts/bootstrap.min.js}"></script>
