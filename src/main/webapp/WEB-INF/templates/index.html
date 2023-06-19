@@ -10,6 +10,10 @@
 	<body>
 		<div th:insert="~{header :: topmenu}"></div>
 		<div>
+			<a th:text="proppppprty" th:href="@{/property}"></a>
+			<a th:text="${pageid}" th:href="@{/property}"></a>
+			<a th:text="${pageid}" th:href="@{/property}"></a>
+			<a th:text="users" th:href="@{/users(pageid='1')}"></a>
 		</div>
 		<div th:insert="~{footer :: copyright}"></div>
 		<script th:src="@{/static/scripts/bootstrap.min.js}"></script>

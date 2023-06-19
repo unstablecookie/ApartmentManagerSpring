@@ -1,23 +1,28 @@
 package org.domainname.service;
 
 import org.domainname.repository.UserRepository;
+import org.domainname.repository.UserPagingRepository;
 import java.util.List;
 import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
 import org.domainname.entity.User;
 import org.domainname.service.UserService;
-import org.domainname.service.UserServiceImp;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
 
 @Service
 public class UserServiceImp implements UserService{
 	
 
 	private UserRepository userRepository;
+	private UserPagingRepository userPagingRepository;
 	private Sort sortByName(){
 		return new Sort(Sort.Direction.ASC, "userName");
 	}
@@ -29,8 +34,9 @@ public class UserServiceImp implements UserService{
 	}
 	
 	@Autowired
-	public void setUserRepository(UserRepository userRepository) {
+	public void setUserRepository(UserRepository userRepository,UserPagingRepository userPagingRepository) {
 		this.userRepository = userRepository;
+		this.userPagingRepository = userPagingRepository;
 	}
 
 	@Transactional
@@ -69,5 +75,11 @@ public class UserServiceImp implements UserService{
 	@Transactional
 	public List<User> fetchUsersSortedLastname(){
 		return (List<User>)userRepository.findAll(sortByLastName());
+	}
+	
+	@Transactional 
+	public List<User> listAllPaged(Pageable pageable){
+		Page<User> page = (Page<User>)userPagingRepository.findAll(pageable);
+		return page.getContent();
 	}
 }

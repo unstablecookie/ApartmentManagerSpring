@@ -4,6 +4,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.domainname.service.UserServiceImp;
@@ -14,8 +15,9 @@ import org.domainname.entity.User;
 import java.util.List;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.domain.PageRequest;
 
 @Controller
 public class UsersController {
@@ -24,13 +26,14 @@ public class UsersController {
 	
 	@Autowired UserService userService;
 	
-	@RequestMapping(value="/users",method=GET)
+	/*@RequestMapping(value="/users",method=GET)
 	public String users(Model model) {
 		List<User> list = userService.fetchUsers();
 		model.addAttribute("userslist",list);
+		model.addAttribute("pageid",1);
 		logger.info("/users with method GET requested");
 		return "users";
-	}
+	}*/
 	
 	@RequestMapping(value="/userssortusername",method=GET)
 	public String usersSortedUsername(Model model) {
@@ -56,7 +59,7 @@ public class UsersController {
 		return "users";
 	}
 	
-	@RequestMapping(value="/users/{userid}",method=GET)
+	@RequestMapping(value="/user/{userid}",method=GET)
 	public String usersId(@PathVariable String userid, Model model) {
 		User user = userService.getById(Long.valueOf(userid));
 		model.addAttribute("userid",user);
@@ -77,6 +80,18 @@ public class UsersController {
 		logger.info("/users/register with method POST requested");
 		return "redirect:/users/";
 		
+	}
+	
+	
+	@RequestMapping(value="/users",method=GET)
+	public String users(
+			@RequestParam(value = "pageid", required = false) String pageid,
+			Model model) {
+		List<User> list = userService.listAllPaged(new PageRequest(0, 5));
+		model.addAttribute("userslist",list);
+		//model.addAttribute("pageid",1);
+		logger.info("/users/{pageid} with method GET requested");
+		return "users";
 	}
 	
 }

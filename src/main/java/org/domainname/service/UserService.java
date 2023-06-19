@@ -3,7 +3,7 @@ package org.domainname.service;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.domainname.entity.User;
-
+import org.springframework.data.domain.Pageable;
 
 public interface UserService {
 	
@@ -14,5 +14,5 @@ public interface UserService {
 	List<User> fetchUsersSortedUsername();
 	List<User> fetchUsersSortedFirstname();
 	List<User> fetchUsersSortedLastname();
-
+	List<User> listAllPaged(Pageable pageable);
 }
