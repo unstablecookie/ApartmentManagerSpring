@@ -26,9 +26,6 @@
 		          <li class="nav-item">
 		            <a class="nav-link" th:href="@{/property/register}">New property</a>
 		          </li>
-		          <li class="nav-item">
-		            <a class="nav-link disabled" href="#">disabled</a>
-		          </li>
 		        </ul> 
 		        <form class="form-inline mt-2 mt-md-0" th:action="@{/search}">
 					<input class="form-control mr-sm-2" type="text" name="keyword" id="keyword" th:value="${keyword}" />
@@ -36,7 +33,7 @@
 				</form>
 		        <ul>
 			        <li class="nav-item active">
-			          <a class="nav-link" th:href="@{/logout}">LOG OUT<span class="sr-only">(current)</span></a>
+			          <a class="linklogout" th:href="@{/logout}">LOG OUT<span class="sr-only">(current)</span></a>
 			        </li>
 		        </ul>
 		      </div>

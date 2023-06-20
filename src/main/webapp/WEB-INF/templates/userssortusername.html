@@ -32,8 +32,8 @@
 					</tr>
 				</thead>
 			</table>
-			<a class="linkpaged" th:text="${pageid}==1 ? '' : 'previous'" th:href="${pageid}==1 ? @{/users(pageid=${pageid})} : @{/users(pageid=${pageid-1})} "></a>
-			<a class="linkpaged" th:text="${userslist.size()<5} ? '' : 'next'" th:href="${userslist.size()<5} ? @{/users(pageid=${pageid})} : @{/users(pageid=${pageid+1})}"></a>
+			<a class="linkpaged" th:text="${pageid}==1 ? '' : 'previous'" th:href="${pageid}==1 ? @{/userssortusername(pageid=${pageid})} : @{/userssortusername(pageid=${pageid-1})} "></a>
+			<a class="linkpaged" th:text="${userslist.size()<5} ? '' : 'next'" th:href="${userslist.size()<5} ? @{/userssortusername(pageid=${pageid})} : @{/userssortusername(pageid=${pageid+1})}"></a>
 		</div>
 		<div th:insert="~{footer :: copyright}"></div>
 		<script th:src="@{/static/scripts/bootstrap.min.js}"></script>

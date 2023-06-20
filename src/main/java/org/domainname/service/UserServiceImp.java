@@ -85,4 +85,5 @@ public class UserServiceImp implements UserService{
 		Page<User> page = (Page<User>)userPagingRepository.findAll(pageable);
 		return page.getContent();
 	}
+	
 }

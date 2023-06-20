@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 @Controller
 public class UsersController {
@@ -33,7 +34,7 @@ public class UsersController {
 		model.addAttribute("pageid",1);
 		logger.info("/users with method GET requested");
 		return "users";
-	}*/
+	}
 	
 	@RequestMapping(value="/userssortusername",method=GET)
 	public String usersSortedUsername(Model model) {
@@ -57,7 +58,7 @@ public class UsersController {
 		model.addAttribute("userslist",list);
 		logger.info("/userssortusername with method GET requested");
 		return "users";
-	}
+	}*/
 	
 	@RequestMapping(value="/user/{userid}",method=GET)
 	public String usersId(@PathVariable String userid, Model model) {
@@ -88,14 +89,49 @@ public class UsersController {
 			Model model) {
 		int pageSize = 5;
 		List<User> list = userService.listAllPaged(new PageRequest(pageid-1,pageSize));
-		int nextPage ;
-		if(list.size()<pageSize) nextPage = pageid;
-		else nextPage=pageid+1;
 		model.addAttribute("userslist",list);
-		model.addAttribute("pageid",nextPage);
-		logger.info("/users/{pageid} with method GET requested");
-
+		model.addAttribute("pageid",pageid);
+		logger.info("/users with method GET requested");
 		return "users";
+	}
+	
+	@RequestMapping(value="/userssortfirstname",method=GET)
+	public String usersSortedFirstname(
+			@RequestParam(value = "pageid", required = false) int pageid,
+			Model model) {
+		int pageSize = 5;
+		Sort sort = new Sort("firstName");
+		List<User> list = userService.listAllPaged(new PageRequest(pageid-1,pageSize,sort));
+		model.addAttribute("userslist",list);
+		model.addAttribute("pageid",pageid);
+		logger.info("/userssortfirstname with method GET requested");
+		return "userssortfirstname";
+	}
+	
+	@RequestMapping(value="/userssortlastname",method=GET)
+	public String usersSortedLastname(
+			@RequestParam(value = "pageid", required = false) int pageid,
+			Model model) {
+		int pageSize = 5;
+		Sort sort = new Sort("lastName");
+		List<User> list = userService.listAllPaged(new PageRequest(pageid-1,pageSize,sort));
+		model.addAttribute("userslist",list);
+		model.addAttribute("pageid",pageid);
+		logger.info("/userssortlastname with method GET requested");
+		return "userssortlastname";
+	}
+	
+	@RequestMapping(value="/userssortusername",method=GET)
+	public String usersSortedUsername(
+			@RequestParam(value = "pageid", required = false) int pageid,
+			Model model) {
+		int pageSize = 5;
+		Sort sort = new Sort("userName");
+		List<User> list = userService.listAllPaged(new PageRequest(pageid-1,pageSize,sort));
+		model.addAttribute("userslist",list);
+		model.addAttribute("pageid",pageid);
+		logger.info("/userssortusername with method GET requested");
+		return "userssortusername";
 	}
 	
 }
