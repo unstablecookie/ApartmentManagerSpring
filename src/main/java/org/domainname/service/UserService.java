@@ -1,7 +1,6 @@
 package org.domainname.service;
 
 import java.util.List;
-import org.springframework.stereotype.Service;
 import org.domainname.entity.User;
 import org.springframework.data.domain.Pageable;
 

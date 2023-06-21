@@ -1,9 +1,8 @@
 package org.domainname.service;
 
 import java.util.List;
-import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Pageable;
 import org.domainname.entity.Property;
-import org.domainname.entity.User;
 
 public interface PropertyService {
 	
@@ -14,4 +13,5 @@ public interface PropertyService {
 	List<Property> fetchPropertyByType();
 	List<Property> fetchPropertyByArea();
 	List<Property> fetchPropertyByBuild();
+	List<Property> listAllPaged(Pageable pageable);
 }

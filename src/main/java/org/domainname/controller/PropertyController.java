@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.domainname.service.PropertyServiceImp;
 import org.domainname.service.UserService;
 import org.slf4j.Logger;
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
+
 @Controller
 public class PropertyController {
 	
@@ -37,7 +40,7 @@ public class PropertyController {
 	@Autowired PropertyService propertyService;
 	@Autowired UserService userService;
 	
-	@RequestMapping(value="/property",method=GET)
+	/*@RequestMapping(value="/property",method=GET)
 	public String property(Model model){
 		List<Property> list = propertyService.fetchProperty();
 		Map<Long, String> map = new HashMap<>();
@@ -87,7 +90,7 @@ public class PropertyController {
 		model.addAttribute("images",map);
 		logger.info("/property with GET method requested");
 		return "property";
-	}
+	}*/
 	
 	@RequestMapping(value="/property/{propertyid}",method=GET)
 	public String propertyId(@PathVariable String propertyid,Model model) {
@@ -117,6 +120,77 @@ public class PropertyController {
 		property.setUser(user);
 		propertyService.saveProperty(property);
 		return "redirect:/property/";
+	}
+	
+	@RequestMapping(value="/property",method=GET)
+	public String property(
+			@RequestParam(value = "pageid", required = false) int pageid,
+			Model model){
+		int pageSize = 10;
+		List<Property> list = propertyService.listAllPaged(new PageRequest(pageid-1,pageSize));
+		Map<Long, String> map = new HashMap<>();
+		for(Property p:list) {
+			map.put(p.getId(), Base64.getEncoder().encodeToString(p.getPhoto()));
+		}
+		model.addAttribute("propertylist",list);
+		model.addAttribute("images",map);
+		model.addAttribute("pageid",pageid);
+		logger.info("/property with GET method requested");
+		return "property";
+	}
+	
+	@RequestMapping(value="/propertysorttype",method=GET)
+	public String propertySortedType(
+			@RequestParam(value = "pageid", required = false) int pageid,
+			Model model){
+		int pageSize = 10;
+		Sort sort = new Sort("type");
+		List<Property> list = propertyService.listAllPaged(new PageRequest(pageid-1,pageSize,sort));
+		Map<Long, String> map = new HashMap<>();
+		for(Property p:list) {
+			map.put(p.getId(), Base64.getEncoder().encodeToString(p.getPhoto()));
+		}
+		model.addAttribute("propertylist",list);
+		model.addAttribute("images",map);
+		model.addAttribute("pageid",pageid);
+		logger.info("/propertysorttype with GET method requested");
+		return "propertysorttype";
+	}
+	
+	@RequestMapping(value="/propertysortarea",method=GET)
+	public String propertySortedArea(
+			@RequestParam(value = "pageid", required = false) int pageid,
+			Model model){
+		int pageSize = 10;
+		Sort sort = new Sort("area");
+		List<Property> list = propertyService.listAllPaged(new PageRequest(pageid-1,pageSize,sort));
+		Map<Long, String> map = new HashMap<>();
+		for(Property p:list) {
+			map.put(p.getId(), Base64.getEncoder().encodeToString(p.getPhoto()));
+		}
+		model.addAttribute("propertylist",list);
+		model.addAttribute("images",map);
+		model.addAttribute("pageid",pageid);
+		logger.info("/propertysortarea with GET method requested");
+		return "propertysortarea";
+	}
+	
+	@RequestMapping(value="/propertysortbuild",method=GET)
+	public String propertySortedBuild(
+			@RequestParam(value = "pageid", required = false) int pageid,
+			Model model){
+		int pageSize = 10;
+		Sort sort = new Sort("build");
+		List<Property> list = propertyService.listAllPaged(new PageRequest(pageid-1,pageSize,sort));
+		Map<Long, String> map = new HashMap<>();
+		for(Property p:list) {
+			map.put(p.getId(), Base64.getEncoder().encodeToString(p.getPhoto()));
+		}
+		model.addAttribute("propertylist",list);
+		model.addAttribute("images",map);
+		model.addAttribute("pageid",pageid);
+		logger.info("/propertysortbuild with GET method requested");
+		return "propertysortbuild";
 	}
 	
 }

@@ -1,10 +1,14 @@
 package org.domainname.service;
 
 import org.domainname.repository.PropertyRepository;
+import org.domainname.repository.UserPagingRepository;
+
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,11 +16,13 @@ import org.domainname.entity.Property;
 import org.domainname.entity.User;
 import org.domainname.service.PropertyService;
 import org.domainname.service.PropertyServiceImp;
+import org.domainname.repository.PropertyPagingRepository;
 
 @Service
 public class PropertyServiceImp implements PropertyService{
 	
 	private PropertyRepository propertyRepository;
+	private PropertyPagingRepository propertyPagingRepository;
 	private Sort sortByType(){
 		return new Sort(Sort.Direction.ASC, "type");
 	}
@@ -28,8 +34,9 @@ public class PropertyServiceImp implements PropertyService{
 	}
 	
 	@Autowired
-	public void setUserRepository(PropertyRepository propertyRepository) {
+	public void setUserRepository(PropertyRepository propertyRepository,PropertyPagingRepository propertyPagingRepository) {
 		this.propertyRepository = propertyRepository;
+		this.propertyPagingRepository = propertyPagingRepository;
 	}
 	
 	@Transactional
@@ -68,5 +75,11 @@ public class PropertyServiceImp implements PropertyService{
 	@Transactional
 	public List<Property> fetchPropertyByBuild(){
 		return (List<Property>)propertyRepository.findAll(sortByBuild());
+	}
+	
+	@Transactional 
+	public List<Property> listAllPaged(Pageable pageable){
+		Page<Property> page = (Page<Property>)propertyPagingRepository.findAll(pageable);
+		return page.getContent();
 	}
 }

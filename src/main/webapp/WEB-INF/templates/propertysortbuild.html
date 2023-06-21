@@ -34,8 +34,8 @@
 					</tr>
 				</thread>
 			</table>
-			<a class="linkpaged" th:text="${pageid}==1 ? '' : 'previous'" th:href="${pageid}==1 ? @{/property(pageid=${pageid})} : @{/property(pageid=${pageid-1})} "></a>
-			<a class="linkpaged" th:text="${propertylist.size()<10} ? '' : 'next'" th:href="${propertylist.size()<10} ? @{/property(pageid=${pageid})} : @{/property(pageid=${pageid+1})}"></a>
+			<a class="linkpaged" th:text="${pageid}==1 ? '' : 'previous'" th:href="${pageid}==1 ? @{/propertysortbuild(pageid=${pageid})} : @{/propertysortbuild(pageid=${pageid-1})} "></a>
+			<a class="linkpaged" th:text="${propertylist.size()<10} ? '' : 'next'" th:href="${propertylist.size()<10} ? @{/propertysortbuild(pageid=${pageid})} : @{/propertysortbuild(pageid=${pageid+1})}"></a>
 		</div>
 		<div th:insert="~{footer :: copyright}"></div>
 		<script th:src="@{/static/scripts/bootstrap.min.js}"></script>
