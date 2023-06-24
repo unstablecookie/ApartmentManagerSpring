@@ -119,6 +119,7 @@ public class PropertyController {
 		User user = userService.getById(Long.valueOf(useridstring));
 		property.setUser(user);
 		propertyService.saveProperty(property);
+		model.addAttribute("pageid", 1);
 		return "redirect:/property/";
 	}
 	
@@ -192,5 +193,24 @@ public class PropertyController {
 		logger.info("/propertysortbuild with GET method requested");
 		return "propertysortbuild";
 	}
+	
+	@RequestMapping(value="/delete_property",method=POST)
+	public String deletePropertyById(
+			@RequestParam("propertydel") Long propertyiddel,
+			Model model)throws IOException {
+		logger.info("DELETE -> propertyiddel : "+propertyiddel);
+		propertyService.deleteProperty(propertyiddel);
+		model.addAttribute("pageid", 1);
+		return "redirect:/property";
+	}
+	/*
+	@RequestMapping(value="/delete_property",method=POST) 
+	public String deleteProperty(
+			@ModelAttribute Property property2,
+			Model model)throws IOException {
+		logger.info("DELETE -> propertyid.getId() : "+property2.getId());
+		propertyService.deleteProperty(property2);
+		return "redirect:/";
+	}*/
 	
 }

@@ -3,6 +3,7 @@ package org.domainname.service;
 import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.domainname.entity.Property;
+import org.domainname.entity.User;
 
 public interface PropertyService {
 	
@@ -14,4 +15,7 @@ public interface PropertyService {
 	List<Property> fetchPropertyByArea();
 	List<Property> fetchPropertyByBuild();
 	List<Property> listAllPaged(Pageable pageable);
+	void deleteSelected(List<Property> list);
+	void deleteProperty(Long id);
+	void deleteProperty(Property property);
 }

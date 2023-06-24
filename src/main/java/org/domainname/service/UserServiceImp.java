@@ -86,4 +86,9 @@ public class UserServiceImp implements UserService{
 		return page.getContent();
 	}
 	
+	@Transactional 
+	public void deleteSelected(List<User> list) {
+		userRepository.deleteInBatch(list);
+	}
+	
 }

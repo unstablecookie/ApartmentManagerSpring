@@ -60,7 +60,7 @@ public class UsersController {
 		return "users";
 	}*/
 	
-	@RequestMapping(value="/user/{userid}",method=GET)
+	@RequestMapping(value="/users/{userid}",method=GET)
 	public String usersId(@PathVariable String userid, Model model) {
 		User user = userService.getById(Long.valueOf(userid));
 		model.addAttribute("userid",user);
@@ -80,7 +80,6 @@ public class UsersController {
 		User newUser = userService.saveUser(user);
 		logger.info("/users/register with method POST requested");
 		return "redirect:/users/";
-		
 	}
 	
 	@RequestMapping(value="/users",method=GET)

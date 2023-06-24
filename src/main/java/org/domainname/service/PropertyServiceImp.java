@@ -82,4 +82,19 @@ public class PropertyServiceImp implements PropertyService{
 		Page<Property> page = (Page<Property>)propertyPagingRepository.findAll(pageable);
 		return page.getContent();
 	}
+	
+	@Transactional
+	public void deleteSelected(List<Property> list) {
+		propertyRepository.deleteInBatch(list);
+	}
+	
+	@Transactional
+	public void deleteProperty(Long id) {
+		propertyRepository.delete(id);
+	}
+	
+	@Transactional
+	public void deleteProperty(Property property) {
+		propertyRepository.delete(property);;
+	}
 }
