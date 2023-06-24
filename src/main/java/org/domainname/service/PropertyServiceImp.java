@@ -4,7 +4,7 @@ import org.domainname.repository.PropertyRepository;
 import org.domainname.repository.UserPagingRepository;
 
 import java.util.List;
-
+import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,10 +16,14 @@ import org.domainname.entity.Property;
 import org.domainname.entity.User;
 import org.domainname.service.PropertyService;
 import org.domainname.service.PropertyServiceImp;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.domainname.repository.PropertyPagingRepository;
 
 @Service
 public class PropertyServiceImp implements PropertyService{
+	
+	private static final Logger logger = LoggerFactory.getLogger(PropertyServiceImp.class);
 	
 	private PropertyRepository propertyRepository;
 	private PropertyPagingRepository propertyPagingRepository;
@@ -96,5 +100,13 @@ public class PropertyServiceImp implements PropertyService{
 	@Transactional
 	public void deleteProperty(Property property) {
 		propertyRepository.delete(property);;
+	}
+	
+	@Transactional
+	public List<Property> listByUser(User user){
+		if(user != null) {
+			return (List<Property>)propertyRepository.searchByUser(user);
+		}
+		return  new ArrayList<Property>();
 	}
 }

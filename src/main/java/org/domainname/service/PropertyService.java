@@ -18,4 +18,5 @@ public interface PropertyService {
 	void deleteSelected(List<Property> list);
 	void deleteProperty(Long id);
 	void deleteProperty(Property property);
+	List<Property> listByUser(User user);
 }

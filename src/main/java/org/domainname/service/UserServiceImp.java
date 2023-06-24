@@ -91,4 +91,13 @@ public class UserServiceImp implements UserService{
 		userRepository.deleteInBatch(list);
 	}
 	
+	@Transactional
+	public void deleteUser(Long id) {
+		userRepository.delete(id);
+	}
+	
+	@Transactional
+	public void deleteUser(User user) {
+		userRepository.delete(user);
+	}
 }

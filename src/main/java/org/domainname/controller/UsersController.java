@@ -10,8 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.domainname.service.UserServiceImp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.domainname.service.PropertyService;
 import org.domainname.service.UserService;
 import org.domainname.entity.User;
+import org.domainname.entity.Property;
+import java.io.IOException;
 import java.util.List;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +28,7 @@ public class UsersController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UsersController.class);
 	
+	@Autowired PropertyService propertyService;
 	@Autowired UserService userService;
 	
 	/*@RequestMapping(value="/users",method=GET)
@@ -78,6 +82,7 @@ public class UsersController {
 	@RequestMapping(value="/users/register",method=POST)
 	public String registerUser(Model model,@ModelAttribute User user) {
 		User newUser = userService.saveUser(user);
+		model.addAttribute("pageid", 1);
 		logger.info("/users/register with method POST requested");
 		return "redirect:/users/";
 	}
@@ -131,6 +136,23 @@ public class UsersController {
 		model.addAttribute("pageid",pageid);
 		logger.info("/userssortusername with method GET requested");
 		return "userssortusername";
+	}
+	
+	@RequestMapping(value="/delete_user",method=POST)
+	public String deletePropertyById(
+			@RequestParam("userdel") Long useriddel,
+			Model model)throws IOException {
+		User user = userService.getById(useriddel);
+		List<Property> list = propertyService.listByUser(user);
+		if(list.size()>0) {
+			for(Property p: list) {
+				propertyService.deleteProperty(p);
+			}
+		}
+		userService.deleteUser(useriddel);
+		model.addAttribute("pageid", 1);
+		logger.info("DELETE -> useriddel : "+useriddel);
+		return "redirect:/users";
 	}
 	
 }

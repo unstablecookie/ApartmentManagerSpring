@@ -198,9 +198,9 @@ public class PropertyController {
 	public String deletePropertyById(
 			@RequestParam("propertydel") Long propertyiddel,
 			Model model)throws IOException {
-		logger.info("DELETE -> propertyiddel : "+propertyiddel);
 		propertyService.deleteProperty(propertyiddel);
 		model.addAttribute("pageid", 1);
+		logger.info("DELETE -> propertyiddel : "+propertyiddel);
 		return "redirect:/property";
 	}
 	/*

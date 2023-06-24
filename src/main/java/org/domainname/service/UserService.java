@@ -15,4 +15,6 @@ public interface UserService {
 	List<User> fetchUsersSortedLastname();
 	List<User> listAllPaged(Pageable pageable);
 	void deleteSelected(List<User> list);
+	void deleteUser(Long id);
+	void deleteUser(User user);
 }

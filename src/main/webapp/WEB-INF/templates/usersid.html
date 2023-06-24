@@ -10,7 +10,34 @@
 	<body>
 		<div th:insert="~{header :: topmenu}"></div>
 		<div>
-			<h2>User:</h2>
+			<h3>User:</h3>
+			<table class="table table-dark">
+				<thread>
+					<tr>
+						<th scope="col">id</th>
+						<th scope="col">first name</th>
+						<th scope="col">last name</th>
+						<th scope="col">user name</th>
+						<th scope="col">action</th>
+					</tr>
+				</thread>
+				<thread>
+					<tr>
+						<td><span th:text="${userid.id}">id</span></td>
+						<td><span th:text="${userid.id}">first name</span></td>
+						<td><span th:text="${userid.id}">last name</span></td>
+						<td><span th:text="${userid.id}">user name</span></td>
+						<td>
+							<form th:action="@{/delete_user(userdel=${userid.id})}" method="POST" >
+								<input type="submit" class="btn btn-danger" value="Delete" />
+								<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							</form>
+						</td>
+					</tr>
+				</thread>
+			</table>
+			
+			
 		    <p>user id is: <span th:text="${userid.id}"></span></p>
 		    <p>first name is: <span th:text="${userid.firstName}"></span></p>
 		    <p>last name is: <span th:text="${userid.lastName}"></span></p>

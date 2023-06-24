@@ -10,7 +10,7 @@
 	<body>
 		<div th:insert="~{header :: topmenu}"></div>
 		<div>
-			<h2>Property:</h2>
+			<h3>Property:</h3>
 		    <table class="table table-dark">
 		    	<thread>
 					<tr>
@@ -30,7 +30,6 @@
 					<td><span th:text="${owner.firstName}">owner</span></td>
 					<td><span th:text="${owner.id}">id</span></td>
 					<td><img th:src="${'data:image/jpeg;charset=utf-8;base64,' + photo}" th:width="150" th:hight="150" alt=""></td>
-					<!-- <td><a th:href="@{/delete_property(propertyid=propertyid.id)}" class="btn btn-danger">Delete</a></td> -->
 					<td>
 						<form th:action="@{/delete_property(propertydel=${propertyid.id})}" method="POST" >
 							<input type="submit" class="btn btn-danger" value="Delete" />
