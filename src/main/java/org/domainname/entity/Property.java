@@ -55,7 +55,7 @@ public class Property {
 	private User user; // FIX THIS
 	
 	public Property() {}
-	public Property(AptType type,int area,int build,User usr,String photoArr) {
+	public Property(AptType type,int area,int build,User usr) {
 		this.type = type;
 		this.area = area;
 		this.build = build;
