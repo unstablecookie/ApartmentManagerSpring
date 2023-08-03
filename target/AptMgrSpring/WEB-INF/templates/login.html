@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>login page</title>
+		<link th:href="@{/static/styles/bootstrap.min.css}" rel="stylesheet" type="text/css" ></link>
+		<link th:href="@{/static/styles/bootstrap.min.css}" rel="stylesheet" type="text/css" ></link>
+		<link th:href="@{/static/styles/navbar-top.css}" rel="stylesheet" type="text/css" ></link>
+		<link th:href="@{/static/styles/style.css}" rel="stylesheet" type="text/css" ></link>
+
+	</head>
+	<body class="text-center">
+		<div class="container-fluid text-center">
+			<form class="form-signin" th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto;">
+					<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+					<label for="username" class="sr-only">Username</label>
+					<input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+		            <input type="password" name="password" class="form-control" placeholder="Password" required />
+	                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+			</form>
+		</div>
+		<script th:src="@{/static/scripts/bootstrap.min.js}"></script>
+		<script th:src="@{/static/scripts/jquery.min.js}"></script>
+		<script th:src="@{/static/scripts/jquery-3.2.1.slim.min.js}"></script>
+		<script th:src="@{/static/scripts/popper.min.js}"></script>
+
+	</body>
+</html>

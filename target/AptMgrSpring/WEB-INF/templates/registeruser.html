@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>user </title>
+		<link th:href="@{/static/styles/bootstrap.min.css}" rel="stylesheet" type="text/css" ></link>
+		<link th:href="@{/static/styles/navbar-top.css}" rel="stylesheet" type="text/css" ></link>
+		<link th:href="@{/static/styles/style.css}" rel="stylesheet" type="text/css" ></link>
+		
+	</head>
+	<body>
+		<div th:insert="~{header :: topmenu}"></div>
+		<div>
+			<h2>new user:</h2>
+		    <form method="POST" th:object="${user}">
+		    	
+				<div class="errors" th:if="${#fields.hasErrors('*')}"><!-- Display errors -->
+					<ul>
+					<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+					</ul>
+				</div>
+				
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+	    				<span class="input-group-text" id="basic-addon1">First Name</span>
+	  				</div>
+					<!--<label th:class="${#fields.hasErrors('firstName')}? 'error'">First Name</label>:First name-->
+					<input type="text" class="form-control" th:field="*{firstName}"th:class="${#fields.hasErrors('firstName')}? 'error'" /><br/>
+				</div>
+				
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+	    				<span class="input-group-text" id="basic-addon2">Last Name</span>
+	  				</div>
+					<!--<label th:class="${#fields.hasErrors('lastName')}? 'error'">Last Name</label>:<!--Last name-->
+					<input type="text" class="form-control" th:field="*{lastName}"th:class="${#fields.hasErrors('lastName')}? 'error'" /><br/>
+				</div>
+				
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+	    				<span class="input-group-text" id="basic-addon3">Username</span>
+	  				</div>
+					<!-- <label th:class="${#fields.hasErrors('userName')}? 'error'">Username</label>:<!--Username-->
+					<input type="text"  class="form-control" th:field="*{userName}" th:class="${#fields.hasErrors('userName')}? 'error'" /><br/>
+				</div>
+				<input type="submit" class="btn btn-success" value="Register" />
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+			</form>
+		</div>
+		<div th:insert="~{footer :: copyright}"></div>
+		<script th:src="@{/static/scripts/bootstrap.min.js}"></script>
+		<script th:src="@{/static/scripts/jquery.min.js}"></script>
+		<script th:src="@{/static/scripts/jquery-3.2.1.slim.min.js}"></script>
+		<script th:src="@{/static/scripts/popper.min.js}"></script>
+	</body>
+</html>

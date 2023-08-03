@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<link th:href="@{/static/styles/bootstrap.min.css}" rel="stylesheet" type="text/css" ></link>
+		<link th:href="@{/static/styles/navbar-top.css}" rel="stylesheet" type="text/css" ></link>
+		<link th:href="@{/static/styles/style.css}" rel="stylesheet" type="text/css" ></link>
+	</head>
+	<body>
+		<div th:fragment="topmenu">
+		    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+		      <a class="navbar-brand" th:href="@{/}">Home</a>
+		      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+		        <span class="navbar-toggler-icon"></span>
+		      </button>
+		      <div class="collapse navbar-collapse" id="navbarCollapse">
+		        <ul class="navbar-nav mr-auto">
+		          <li class="nav-item active">
+		            <a class="nav-link" th:href="@{/users(pageid='1')}">List Users<span class="sr-only">(current)</span></a>
+		          </li>
+		          <li class="nav-item active">
+		            <a class="nav-link" th:href="@{/property(pageid='1')}">List Property<span class="sr-only">(current)</span></a>
+		          </li>
+		          <li class="nav-item">
+		            <a class="nav-link" th:href="@{/users/register}">New user</a>
+		          </li>
+		          <li class="nav-item">
+		            <a class="nav-link" th:href="@{/property/register}">New property</a>
+		          </li>
+		        </ul> 
+		        <form class="form-inline mt-2 mt-md-0" th:action="@{/search}">
+					<input class="form-control mr-sm-2" type="text" name="keyword" id="keyword" th:value="${keyword}" />
+					<input class="btn btn-outline-success" type="submit" value="Search" />
+				</form>
+		        <ul>
+			        <li class="nav-item active">
+			          <a class="linklogout" th:href="@{/logout}">LOG OUT<span class="sr-only">(current)</span></a>
+			        </li>
+		        </ul>
+		      </div>
+		    </nav>
+		<script th:src="@{/static/scripts/bootstrap.min.js}"></script>
+		<script th:src="@{/static/scripts/jquery.min.js}"></script>
+		<script th:src="@{/static/scripts/jquery-3.2.1.slim.min.js}"></script>
+		<script th:src="@{/static/scripts/popper.min.js}"></script>
+		</div>
+	</body>
+</html>

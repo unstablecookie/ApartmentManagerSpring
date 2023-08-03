@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>index page</title>
+		<link th:href="@{/static/styles/bootstrap.min.css}" rel="stylesheet" type="text/css" ></link>
+		<link th:href="@{/static/styles/navbar-top.css}" rel="stylesheet" type="text/css" ></link>
+		<link th:href="@{/static/styles/style.css}" rel="stylesheet" type="text/css" ></link>
+		
+	</head>
+	<body>
+		<div th:insert="~{header :: topmenu}"></div>
+		<div>
+		</div>
+		<div th:insert="~{footer :: copyright}"></div>
+		<script th:src="@{/static/scripts/bootstrap.min.js}"></script>
+		<script th:src="@{/static/scripts/jquery.min.js}"></script>
+		<script th:src="@{/static/scripts/jquery-3.2.1.slim.min.js}"></script>
+		<script th:src="@{/static/scripts/popper.min.js}"></script>
+	</body>
+</html>
