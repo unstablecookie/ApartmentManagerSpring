@@ -38,7 +38,7 @@ public class PersistenceJPAConfig {
 		    dataSource.setDriverClassName("org.postgresql.Driver");
 		    dataSource.setUsername("postgres");
 		    dataSource.setPassword("P@ssw0rd");
-		    dataSource.setUrl("jdbc:postgresql://localhost:5432/jdncdemobd"); 
+		    dataSource.setUrl("jdbc:postgresql://192.168.1.126:5432/jdncdemobd"); 
 		    return dataSource;
 		}
 		

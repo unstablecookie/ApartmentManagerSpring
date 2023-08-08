@@ -21,12 +21,14 @@ import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import org.springframework.context.ApplicationContextAware;
+
 
 
 @Configuration
 @EnableWebMvc
 @ComponentScan("org.domainname")
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware{
 	private ApplicationContext applicationContext;
 	
 	public void setApplicationContext(final ApplicationContext applicationContext) throws BeansException {
