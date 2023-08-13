@@ -8,6 +8,8 @@ import org.domainname.config.SecurityConfig;
 import org.springframework.web.multipart.support.MultipartFilter;
 import javax.servlet.ServletContext;
 
+
+
 public class AptMgrWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 	@Override
 	protected String[] getServletMappings() {
@@ -23,5 +25,4 @@ public class AptMgrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
 	}
 	
 
-	
 }
