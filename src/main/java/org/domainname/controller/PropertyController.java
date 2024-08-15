@@ -40,58 +40,6 @@ public class PropertyController {
 	@Autowired PropertyService propertyService;
 	@Autowired UserService userService;
 	
-	/*@RequestMapping(value="/property",method=GET)
-	public String property(Model model){
-		List<Property> list = propertyService.fetchProperty();
-		Map<Long, String> map = new HashMap<>();
-		for(Property p:list) {
-			map.put(p.getId(), Base64.getEncoder().encodeToString(p.getPhoto()));
-		}
-		model.addAttribute("propertylist",list);
-		model.addAttribute("images",map);
-		logger.info("/property with GET method requested");
-		return "property";
-	}
-	
-	@RequestMapping(value="/propertybytype",method=GET)
-	public String propertyByType(Model model){
-		List<Property> list = propertyService.fetchPropertyByType();
-		Map<Long, String> map = new HashMap<>();
-		for(Property p:list) {
-			map.put(p.getId(), Base64.getEncoder().encodeToString(p.getPhoto()));
-		}
-		model.addAttribute("propertylist",list);
-		model.addAttribute("images",map);
-		logger.info("/property with GET method requested");
-		return "property";
-	}
-	
-	@RequestMapping(value="/propertybyarea",method=GET)
-	public String propertyByArea(Model model){
-		List<Property> list = propertyService.fetchPropertyByArea();
-		Map<Long, String> map = new HashMap<>();
-		for(Property p:list) {
-			map.put(p.getId(), Base64.getEncoder().encodeToString(p.getPhoto()));
-		}
-		model.addAttribute("propertylist",list);
-		model.addAttribute("images",map);
-		logger.info("/property with GET method requested");
-		return "property";
-	}
-	
-	@RequestMapping(value="/propertybybuild",method=GET)
-	public String propertyByBuild(Model model){
-		List<Property> list = propertyService.fetchPropertyByBuild();
-		Map<Long, String> map = new HashMap<>();
-		for(Property p:list) {
-			map.put(p.getId(), Base64.getEncoder().encodeToString(p.getPhoto()));
-		}
-		model.addAttribute("propertylist",list);
-		model.addAttribute("images",map);
-		logger.info("/property with GET method requested");
-		return "property";
-	}*/
-	
 	@RequestMapping(value="/property/{propertyid}",method=GET)
 	public String propertyId(@PathVariable String propertyid,Model model) {
 		Property property = propertyService.getById(Long.valueOf(propertyid));
@@ -203,14 +151,5 @@ public class PropertyController {
 		logger.info("DELETE -> propertyiddel : "+propertyiddel);
 		return "redirect:/property";
 	}
-	/*
-	@RequestMapping(value="/delete_property",method=POST) 
-	public String deleteProperty(
-			@ModelAttribute Property property2,
-			Model model)throws IOException {
-		logger.info("DELETE -> propertyid.getId() : "+property2.getId());
-		propertyService.deleteProperty(property2);
-		return "redirect:/";
-	}*/
 	
 }
