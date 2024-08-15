@@ -31,39 +31,6 @@ public class UsersController {
 	@Autowired PropertyService propertyService;
 	@Autowired UserService userService;
 	
-	/*@RequestMapping(value="/users",method=GET)
-	public String users(Model model) {
-		List<User> list = userService.fetchUsers();
-		model.addAttribute("userslist",list);
-		model.addAttribute("pageid",1);
-		logger.info("/users with method GET requested");
-		return "users";
-	}
-	
-	@RequestMapping(value="/userssortusername",method=GET)
-	public String usersSortedUsername(Model model) {
-		List<User> list = userService.fetchUsersSortedUsername();
-		model.addAttribute("userslist",list);
-		logger.info("/userssortusername with method GET requested");
-		return "users";
-	}
-	
-	@RequestMapping(value="/userssortfirstname",method=GET)
-	public String usersSortedFirstname(Model model) {
-		List<User> list = userService.fetchUsersSortedFirstname();
-		model.addAttribute("userslist",list);
-		logger.info("/userssortusername with method GET requested");
-		return "users";
-	}
-	
-	@RequestMapping(value="/userssortlastname",method=GET)
-	public String usersSortedLastname(Model model) {
-		List<User> list = userService.fetchUsersSortedLastname();
-		model.addAttribute("userslist",list);
-		logger.info("/userssortusername with method GET requested");
-		return "users";
-	}*/
-	
 	@RequestMapping(value="/users/{userid}",method=GET)
 	public String usersId(@PathVariable String userid, Model model) {
 		User user = userService.getById(Long.valueOf(userid));
